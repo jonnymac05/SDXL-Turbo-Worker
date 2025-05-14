@@ -8,9 +8,10 @@ import time
 # Load the model
 try:
     pipe = AutoPipelineForText2Image.from_pretrained(
-        "stabilityai/sdxl-turbo",
-        torch_dtype=torch.float16,
-        variant="fp16"
+        # "stabilityai/sdxl-turbo", #commenting out previous model
+        "black-forest-labs/FLUX.1-dev",
+        torch_dtype=torch.float16
+       # variant="fp16" #commenting out unnecessary
     )
     pipe.to("cuda")
 except RuntimeError:

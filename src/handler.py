@@ -4,13 +4,16 @@ import torch
 import base64
 import io
 import time
+import os
 
 # Load the model
 try:
+    token = os.getenv("HUGGINGFACE_TOKEN") #added env variable
     pipe = AutoPipelineForText2Image.from_pretrained(
         # "stabilityai/sdxl-turbo", #commenting out previous model
         "black-forest-labs/FLUX.1-dev",
-        torch_dtype=torch.float16
+        torch_dtype=torch.float16,
+        use_auth_token=token # added auth token for huggingface
        # variant="fp16" #commenting out unnecessary
     )
     pipe.to("cuda")
